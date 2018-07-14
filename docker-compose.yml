@@ -1,0 +1,20 @@
+version: '3.4'
+
+services:
+  db:
+    build: .
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: db
+      PGTZ: Europe/Bucharest
+    volumes:
+      - /data/postgres:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+  adminer:
+    image: adminer
+    restart: unless-stopped
+    ports:
+      - 54321:8080
